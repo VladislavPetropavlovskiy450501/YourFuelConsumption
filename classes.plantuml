@@ -1,0 +1,54 @@
+@startuml
+top to bottom direction
+skinparam headerFontSize 30
+skinparam headerFontStyle bold
+skinparam classAttributeIconSize 0
+scale 1.0
+package android.support.v7.appcompat {
+class android.support.v7.appcompat.R {
+.. Interiors ..
++ {static} class anim
++ {static} class attr
++ {static} class bool
++ {static} class color
++ {static} class dimen
++ {static} class drawable
++ {static} class id
++ {static} class integer
++ {static} class layout
++ {static} class string
++ {static} class style
++ {static} class styleable
+}
+
+}
+package com.vp3000r.yourfuelconsumption {
+class com.vp3000r.yourfuelconsumption.R {
+.. Interiors ..
++ {static} class anim
++ {static} class attr
++ {static} class bool
++ {static} class color
++ {static} class dimen
++ {static} class drawable
++ {static} class id
++ {static} class integer
++ {static} class layout
++ {static} class mipmap
++ {static} class string
++ {static} class style
++ {static} class styleable
+}
+class com.vp3000r.yourfuelconsumption.BuildConfig {
+.. Fields  ..
+.. Static ..
++ {static} APPLICATION_ID : String
++ {static} BUILD_TYPE : String
++ {static} DEBUG : boolean
++ {static} FLAVOR : String
++ {static} VERSION_CODE : int
++ {static} VERSION_NAME : String
+}
+
+}
+@enduml

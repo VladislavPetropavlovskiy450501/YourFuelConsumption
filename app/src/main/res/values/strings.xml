@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">YourFuelConsumption</string>
+    <string-array name="fuels">
+        <item>ДТ Евро-5</item>
+        <item>ДТ Арктика</item>
+        <item>АИ-92</item>
+        <item>АИ-95</item>
+        <item>Газ</item>
+        <item>adblue</item>
+    </string-array>
+
+    <string-array name="periods">
+        <item>Неделя</item>
+        <item>Месяц</item>
+        <item>Год</item>
+
+    </string-array>
+
+</resources>

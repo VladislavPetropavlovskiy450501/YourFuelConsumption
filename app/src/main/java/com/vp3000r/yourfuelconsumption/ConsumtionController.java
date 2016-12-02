@@ -19,6 +19,5 @@ public class ConsumtionController extends Controller {
             context.setStrategy(new StrategyLessthan7());
             double target = context.executeStrategy(fuelCons);
         }
-
         }
 }

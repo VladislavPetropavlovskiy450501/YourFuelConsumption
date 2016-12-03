@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 public class PricesView extends AppCompatActivity implements View {
 
-    double ai92=1.11, ai95=1.19, dt=1.23, dtarctic=1.38, gas=0.63, adblue=0.65;
+
 
 
     public void btPrLeft(android.view.View view) {
@@ -20,15 +20,29 @@ public class PricesView extends AppCompatActivity implements View {
         startActivity(intent);
     }
 
+    public void showPrices()
+    {
+
+        PricesController prices = new PricesController();
+        ((TextView) findViewById(R.id.textView92)).setText("" + prices.ai92);
+        ((TextView) findViewById(R.id.textView95)).setText("" + prices.ai95);
+        ((TextView) findViewById(R.id.textViewDT)).setText("" + prices.dt);
+        ((TextView) findViewById(R.id.textViewDTA)).setText("" + prices.dtarctic);
+        ((TextView) findViewById(R.id.textViewGas)).setText("" + prices.gas);
+        ((TextView) findViewById(R.id.textViewAB)).setText("" + prices.adblue);
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prices_view);
-        ((TextView) findViewById(R.id.textView92)).setText("" + ai92);
-        ((TextView) findViewById(R.id.textView95)).setText("" + ai95);
-        ((TextView) findViewById(R.id.textViewDT)).setText("" + dt);
-        ((TextView) findViewById(R.id.textViewDTA)).setText("" + dtarctic);
-        ((TextView) findViewById(R.id.textViewGas)).setText("" + gas);
-        ((TextView) findViewById(R.id.textViewAB)).setText("" + adblue);
+        showPrices();
+    }
+
+    public void refreshPrices (android.view.View view) {
+        PricesController.refreshprices();
+        showPrices();
     }
 }

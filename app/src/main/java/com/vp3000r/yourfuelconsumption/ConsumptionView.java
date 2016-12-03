@@ -3,13 +3,15 @@ package com.vp3000r.yourfuelconsumption;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ConsumptionView extends AppCompatActivity implements View {
 
-    double fuelCons=7.2, moneyCons=18.45, target=7.1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,9 +27,17 @@ public class ConsumptionView extends AppCompatActivity implements View {
         // Применяем адаптер к элементу spinner
         spinner.setAdapter(adapter);
 
-        ((TextView) findViewById(R.id.textViewFuelC)).setText("" + fuelCons +"л/100км");
-        ((TextView) findViewById(R.id.textViewMoneyC)).setText("" + moneyCons);
-        ((TextView) findViewById(R.id.textViewTarget)).setText("" + target + "л/100км");
+        showConsumption();
+
+
+
+
+    }
+    public void showConsumption() {
+        ConsumtionController consumption = new ConsumtionController();
+        ((TextView) findViewById(R.id.textViewFuelC)).setText("" + consumption.fuelweek + "л/100км");
+        ((TextView) findViewById(R.id.textViewMoneyC)).setText("" + consumption.moneyweek);
+        ((TextView) findViewById(R.id.textViewTarget)).setText("" + consumption.target + "л/100км");
     }
 
     public void btConsLeft(android.view.View view) {

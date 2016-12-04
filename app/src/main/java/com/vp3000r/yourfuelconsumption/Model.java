@@ -46,6 +46,10 @@ public class Model {
         else if (period==1) return 6.9;
         else return 7.2;
     }
+    public static void addRefuel (double litres, double cost, double fuellevel, double odometr, double fuelprice)
+    {
 
+
+    }
 
 }

@@ -24,11 +24,11 @@
         android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/editText"
-        android:text="Количество Литров"
+        android:hint="Количество литров"
         android:layout_alignParentStart="true"
         android:textIsSelectable="false"
         android:clickable="true"
-        android:onClick="InpL"
+
         android:layout_below="@+id/editText2"
         android:layout_alignParentLeft="true"
 
@@ -41,9 +41,9 @@
         android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/editText2"
-        android:text="Сумма"
+        android:hint="Сумма"
         android:clickable="true"
-        android:onClick="InpM"
+
         android:layout_below="@+id/editText4"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -57,9 +57,9 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/editText3"
-        android:text="Показания одометра"
+        android:hint="Показания одометра"
         android:clickable="true"
-        android:onClick="InpO"
+
         android:layout_alignParentStart="true"
         android:layout_below="@+id/editText"
         android:layout_alignParentLeft="true"
@@ -72,8 +72,8 @@
         android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/editText4"
-        android:text="Показания датчика топлива"
-        android:onClick="InpF"
+        android:hint="Показания датчика топлива"
+
         android:layout_below="@+id/imageButton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -87,6 +87,7 @@
         android:layout_height="wrap_content"
         android:text="Заправить"
         android:id="@+id/button"
+        android:onClick="btRefuel"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
@@ -122,12 +123,27 @@
         android:layout_above="@+id/editText4"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:background="@null" /><![CDATA[
+        android:background="@null" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+
+        android:id="@+id/textView9"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/spinner" /><![CDATA[
+
+
+
+
 
     android:id="@+id/imageButton"
         android:layout_alignTop="@+id/textView"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+
 
 ]]>
 </RelativeLayout>

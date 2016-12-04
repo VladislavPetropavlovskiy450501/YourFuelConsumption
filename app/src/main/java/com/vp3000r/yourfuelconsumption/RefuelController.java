@@ -4,19 +4,17 @@ package com.vp3000r.yourfuelconsumption;
  * Created by P on 21.11.16.
  */
 public class RefuelController extends Controller {
-    int kind=3;
-    public static void addFuel(Object price)
-    {
 
-    }
 
-    public static void main(String[] args)
+    RefuelController (double litres, double cost, double fuellevel, double odometr, int fuelkind)
     {
         GetFuel gf = new GetFuelAdapter();
-        Object fuelprice = gf.getFuel();
-        addFuel(fuelprice);
+        double fuelprice = gf.getFuel(fuelkind);
+
+        Model.addRefuel(litres, cost, fuellevel, odometr, fuelprice);
 
     }
+
 
 
 }

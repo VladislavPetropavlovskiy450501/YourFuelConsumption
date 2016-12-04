@@ -26,17 +26,46 @@ public class ConsumptionView extends AppCompatActivity implements View {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Применяем адаптер к элементу spinner
         spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent,
+                                       View itemSelected, int selectedItemPosition, long selectedId) {
 
-        showConsumption();
+
+            }
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, android.view.View view, int position, long id) {
+                showConsumption(position);
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        showConsumption(0);
 
 
 
 
     }
-    public void showConsumption() {
+
+
+    public void showConsumption(int period) {
         ConsumtionController consumption = new ConsumtionController();
-        ((TextView) findViewById(R.id.textViewFuelC)).setText("" + consumption.fuelweek + "л/100км");
-        ((TextView) findViewById(R.id.textViewMoneyC)).setText("" + consumption.moneyweek);
+        if (period==0){
+            ((TextView) findViewById(R.id.textViewFuelC)).setText("" + consumption.fuelweek + "л/100км");
+            ((TextView) findViewById(R.id.textViewMoneyC)).setText("" + consumption.moneyweek);
+
+        }
+        else if (period==1){
+            ((TextView) findViewById(R.id.textViewFuelC)).setText("" + consumption.fuelmonth + "л/100км");
+            ((TextView) findViewById(R.id.textViewMoneyC)).setText("" + consumption.moneymonth);
+        }
+        else {
+            ((TextView) findViewById(R.id.textViewFuelC)).setText("" + consumption.fuelyear + "л/100км");
+            ((TextView) findViewById(R.id.textViewMoneyC)).setText("" + consumption.moneyyear);
+        }
+
         ((TextView) findViewById(R.id.textViewTarget)).setText("" + consumption.target + "л/100км");
     }
 
@@ -52,5 +81,6 @@ public class ConsumptionView extends AppCompatActivity implements View {
 
 
     }
+
 
 }

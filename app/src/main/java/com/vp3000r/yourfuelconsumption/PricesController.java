@@ -22,11 +22,20 @@ public class PricesController extends Controller {
         Model.refreshPrices();
     }
 
-    public Object sendPrice(){
+    public double sendPrice(int fuelkind){
+    double price=0;
+       switch (fuelkind)
+       {
+           case 0: price = Model.senddt();
+           case 1: price = Model.senddtarctic();
+           case 2: price = Model.send92();
+           case 3: price = Model.send95();
+           case 4: price = Model.sendgas();
+           case 5: price = Model.sendadblue();
 
-        return 1.23;
+       }
+    return price;
 
-
-    };
+    }
 
 }

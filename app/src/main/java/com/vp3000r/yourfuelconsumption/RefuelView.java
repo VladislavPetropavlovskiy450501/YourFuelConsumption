@@ -1,5 +1,6 @@
 package com.vp3000r.yourfuelconsumption;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 public class RefuelView extends AppCompatActivity implements View {
 
     float litres, cost, fuellevel, odometr;
+    Context c = this;
     boolean inpflag=true, costflag=true, litresflag=true;
     public void btRefuelLeft(android.view.View view) {
         Intent intent = new Intent(RefuelView.this, PricesView.class);
@@ -26,6 +28,7 @@ public class RefuelView extends AppCompatActivity implements View {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_refuel_view);
 
@@ -92,7 +95,7 @@ public class RefuelView extends AppCompatActivity implements View {
                     ((TextView) findViewById(R.id.textView9)).setText("");
                     if (inpflag==true && (litresflag==true || costflag == true))
                     {
-                        RefuelController refuel = new RefuelController(litres, cost, fuellevel, odometr, fuelkind);
+                        RefuelController refuel = new RefuelController(litres, cost, fuellevel, odometr, fuelkind, c);
                         btRefuelRight(v);
 
                     }

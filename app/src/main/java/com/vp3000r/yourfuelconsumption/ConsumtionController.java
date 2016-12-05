@@ -13,7 +13,7 @@ public class ConsumtionController extends Controller {
     fuelweek = Model.sendFuel(0);
     fuelmonth = Model.sendFuel(1);
     fuelyear = Model.sendFuel(2);
-    Context context = new Context();
+    StrategyContext context = new StrategyContext();
 
     if (fuelweek>7) {
         context.setStrategy(new StrategyMorethan7());

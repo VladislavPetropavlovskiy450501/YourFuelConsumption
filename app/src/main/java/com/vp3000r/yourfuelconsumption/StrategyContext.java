@@ -3,12 +3,12 @@ package com.vp3000r.yourfuelconsumption;
 /**
  * Created by P on 01.12.16.
  */
-public class Context {
+public class StrategyContext {
 
     private Strategy strategy;
 
     // Constructor
-    public Context() {
+    public StrategyContext() {
     }
 
     // Set new strategy

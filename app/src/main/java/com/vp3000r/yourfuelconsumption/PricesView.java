@@ -1,6 +1,7 @@
 package com.vp3000r.yourfuelconsumption;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -22,8 +23,7 @@ public class PricesView extends AppCompatActivity implements View {
 
     public void showPrices()
     {
-
-        PricesController prices = new PricesController();
+        PricesController prices = new PricesController(this);
         ((TextView) findViewById(R.id.textView92)).setText("" + prices.ai92);
         ((TextView) findViewById(R.id.textView95)).setText("" + prices.ai95);
         ((TextView) findViewById(R.id.textViewDT)).setText("" + prices.dt);
@@ -43,6 +43,9 @@ public class PricesView extends AppCompatActivity implements View {
 
     public void refreshPrices (android.view.View view) {
         PricesController.refreshprices();
-        showPrices();
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() { public void run() {showPrices();} }, 30000);
+
     }
 }

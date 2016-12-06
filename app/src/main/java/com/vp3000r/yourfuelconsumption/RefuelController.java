@@ -12,8 +12,8 @@ public class RefuelController extends Controller {
     {
         GetFuel gf = new GetFuelAdapter(context);
         double fuelprice = gf.getFuel(fuelkind, context);
-
-        Model.addRefuel(litres, cost, fuellevel, odometr, fuelprice);
+        Model model = new Model (context, 0);
+        model.addRefuel(litres, cost, fuellevel, odometr, fuelprice);
 
     }
 

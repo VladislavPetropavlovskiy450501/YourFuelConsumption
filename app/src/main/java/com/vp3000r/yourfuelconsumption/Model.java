@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.vp3000r.yourfuelconsumption.data.PricesDbHelper;
+import com.vp3000r.yourfuelconsumption.data.RefuelsDbHelper;
 
 import org.htmlcleaner.TagNode;
 
@@ -17,6 +18,7 @@ import java.io.File;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -24,39 +26,40 @@ import java.util.List;
 public class Model {
     static Context context;
     static PricesDbHelper pricesDBhelper;
+    static RefuelsDbHelper refuelsDBhelper;
 
     Model(Context c) {
         context = c;
         pricesDBhelper = new PricesDbHelper(context);
+
         File dbtest = new File("/data/data/com.vp3000r.yourfuelconsumption/databases/prices.db");
         if (dbtest.exists()) {
 
         } else {
-            createDB(pricesDBhelper);
+
             pricesDBhelper.insertData();
         }
 
-
-    /*
-    if(pdbh.getReadableDatabase()==null)
-    {
-
-    }*/
     }
+    Model(Context c, int a) {
+        context = c;
+        refuelsDBhelper = new RefuelsDbHelper(context);
 
+        File dbtest = new File("/data/data/com.vp3000r.yourfuelconsumption/databases/refuels.db");
+        if (dbtest.exists()) {
+
+        } else {
+
+
+        }
+
+    }
 
     SQLiteDatabase db;
     Cursor userCursor;
     SimpleCursorAdapter userAdapter;
 
-    public static boolean createDB(PricesDbHelper pdbh1) {
 
-
-        pdbh1 = new PricesDbHelper(context);
-        return true;
-
-
-    }
 
 
     public static double send92() {
@@ -119,19 +122,84 @@ public class Model {
     }
 
     public static double sendMoney(int period) {
-        if (period == 0) return 18.45;
-        else if (period == 1) return 50.00;
-        else return 1200;
+        double cons;
+        Date targetdate = new Date();
+
+
+        if (period == 0) {
+            targetdate.setDate(targetdate.getDate()-7);
+        }
+
+        else if (period == 1)
+        {
+            targetdate.setMonth(targetdate.getMonth()-1);
+        }
+
+        else
+        {
+            targetdate.setYear(targetdate.getYear()-1);
+        };
+        String month;
+        String day;
+        if (targetdate.getMonth()<10) month = "0"+String.valueOf(targetdate.getMonth()); else month = String.valueOf(targetdate.getMonth());
+        if (targetdate.getDate()<10) day = "0"+String.valueOf(targetdate.getDate()); else day = String.valueOf(targetdate.getDate());
+        String targetdatecomparible = String.valueOf(targetdate.getYear())+month+day;
+        cons=refuelsDBhelper.readMoney(targetdatecomparible);
+
+        BigDecimal bd = new BigDecimal(cons);
+        bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
+        return bd.doubleValue();
     }
 
     public static double sendFuel(int period) {
-        if (period == 0) return 7.3;
-        else if (period == 1) return 6.9;
-        else return 7.2;
+        double cons;
+        Date targetdate = new Date();
+
+
+        if (period == 0) {
+           targetdate.setDate(targetdate.getDate()-7);
+        }
+
+        else if (period == 1)
+        {
+            targetdate.setMonth(targetdate.getMonth()-1);
+        }
+
+        else
+        {
+            targetdate.setYear(targetdate.getYear()-1);
+        };
+        String month;
+        String day;
+        if (targetdate.getMonth()<10) month = "0"+String.valueOf(targetdate.getMonth()); else month = String.valueOf(targetdate.getMonth());
+        if (targetdate.getDate()<10) day = "0"+String.valueOf(targetdate.getDate()); else day = String.valueOf(targetdate.getDate());
+        String targetdatecomparible = String.valueOf(targetdate.getYear())+month+day;
+        cons=refuelsDBhelper.readFuel(targetdatecomparible);
+
+        BigDecimal bd = new BigDecimal(cons);
+        bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
+        return bd.doubleValue();
     }
 
     public static void addRefuel(double litres, double cost, double fuellevel, double odometr, double fuelprice) {
-
+        Date date = new Date();
+        BigDecimal bd;
+        bd =new BigDecimal(65*fuellevel);
+        bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
+        fuellevel =  bd.doubleValue();
+        if (cost==0) cost = fuelprice*litres; else litres = cost/fuelprice;
+        bd =new BigDecimal(cost);
+        bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
+        cost =  bd.doubleValue();
+        bd =new BigDecimal(litres);
+        bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
+        litres =  bd.doubleValue();
+        String month;
+        String day;
+        if (date.getMonth()<10) month = "0"+String.valueOf(date.getMonth()); else month = String.valueOf(date.getMonth());
+        if (date.getDate()<10) day = "0"+String.valueOf(date.getDate()); else day = String.valueOf(date.getDate());
+        String datecomparible = String.valueOf(date.getYear())+month+day;
+        refuelsDBhelper.insertData(datecomparible, fuellevel, litres, cost, odometr);
 
     }
 

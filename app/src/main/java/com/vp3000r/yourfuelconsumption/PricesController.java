@@ -32,12 +32,12 @@ public class PricesController extends Controller {
        switch (fuelkind)
        {
 
-           case 0: price = Model.senddt();
-           case 1: price = Model.senddtarctic();
-           case 2: price = Model.send92();
-           case 3: price = Model.send95();
-           case 4: price = Model.sendgas();
-           case 5: price = Model.sendadblue();
+           case 0: {price = Model.senddt();break;}
+           case 1: {price = Model.senddtarctic();break;}
+           case 2: {price = Model.send92();break;}
+           case 3: {price = Model.send95();break;}
+           case 4: {price = Model.sendgas();break;}
+           case 5: {price = Model.sendadblue();break;}
 
        }
     return price;

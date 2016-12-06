@@ -51,7 +51,7 @@ public class ConsumptionView extends AppCompatActivity implements View {
 
 
     public void showConsumption(int period) {
-        ConsumtionController consumption = new ConsumtionController();
+        ConsumtionController consumption = new ConsumtionController(this);
         if (period==0){
             ((TextView) findViewById(R.id.textViewFuelC)).setText("" + consumption.fuelweek + "л/100км");
             ((TextView) findViewById(R.id.textViewMoneyC)).setText("" + consumption.moneyweek);

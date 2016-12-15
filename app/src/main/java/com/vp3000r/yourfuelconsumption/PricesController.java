@@ -15,13 +15,13 @@ public class PricesController extends Controller {
         Model model = new Model(context);
         ai92 = Model.send92();
         ai95 = Model.send95();
-        dt = Model.senddt();
-        dtarctic = Model.senddtarctic();
-        gas = Model.sendgas();
-        adblue = Model.sendadblue();
+        dt = Model.sendDT();
+        dtarctic = Model.sendDTarctic();
+        gas = Model.sendGas();
+        adblue = Model.sendAdblue();
     }
 
-    public static void refreshprices()
+    public static void refreshPrices()
     {
         Model.refreshPrices();
     }
@@ -32,12 +32,12 @@ public class PricesController extends Controller {
        switch (fuelkind)
        {
 
-           case 0: {price = Model.senddt();break;}
-           case 1: {price = Model.senddtarctic();break;}
+           case 0: {price = Model.sendDT();break;}
+           case 1: {price = Model.sendDTarctic();break;}
            case 2: {price = Model.send92();break;}
            case 3: {price = Model.send95();break;}
-           case 4: {price = Model.sendgas();break;}
-           case 5: {price = Model.sendadblue();break;}
+           case 4: {price = Model.sendGas();break;}
+           case 5: {price = Model.sendAdblue();break;}
 
        }
     return price;

@@ -1,10 +1,14 @@
 package com.vp3000r.yourfuelconsumption;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class PricesView extends AppCompatActivity implements View {
 
@@ -40,12 +44,38 @@ public class PricesView extends AppCompatActivity implements View {
         setContentView(R.layout.activity_prices_view);
         showPrices();
     }
-
+    public static boolean hasConnection(final Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo wifiInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        if (wifiInfo != null && wifiInfo.isConnected()) {
+            return true;
+        }
+        wifiInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        if (wifiInfo != null && wifiInfo.isConnected()) {
+            return true;
+        }
+        wifiInfo = cm.getActiveNetworkInfo();
+        if (wifiInfo != null && wifiInfo.isConnected()) {
+            return true;
+        }
+        return false;
+    }
     public void refreshPrices (android.view.View view) {
-        PricesController.refreshprices();
 
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() { public void run() {showPrices();} }, 30000);
+        if (hasConnection(this)==true) {
+            PricesController.refreshPrices();
 
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    showPrices();
+                }
+            }, 30000);
+        }
+        else
+        {
+            Toast.makeText(this, "No internet connection", Toast.LENGTH_LONG).show();
+
+        }
     }
 }

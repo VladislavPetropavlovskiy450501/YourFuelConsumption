@@ -32,8 +32,8 @@ public class Model {
         context = c;
         pricesDBhelper = new PricesDbHelper(context);
 
-        File dbtest = new File("/data/data/com.vp3000r.yourfuelconsumption/databases/prices.db");
-        if (dbtest.exists()) {
+        File dbTest = new File("/data/data/com.vp3000r.yourfuelconsumption/databases/prices.db");
+        if (dbTest.exists()) {
 
         } else {
 
@@ -45,8 +45,8 @@ public class Model {
         context = c;
         refuelsDBhelper = new RefuelsDbHelper(context);
 
-        File dbtest = new File("/data/data/com.vp3000r.yourfuelconsumption/databases/refuels.db");
-        if (dbtest.exists()) {
+        File dbTest = new File("/data/data/com.vp3000r.yourfuelconsumption/databases/refuels.db");
+        if (dbTest.exists()) {
 
         } else {
 
@@ -74,19 +74,19 @@ public class Model {
         return pricesDBhelper.readFuelPrice(3);
     }
 
-    public static double senddt() {
+    public static double sendDT() {
         return pricesDBhelper.readFuelPrice(0);
     }
 
-    public static double senddtarctic() {
+    public static double sendDTarctic() {
         return pricesDBhelper.readFuelPrice(1);
     }
 
-    public static double sendgas() {
+    public static double sendGas() {
         return pricesDBhelper.readFuelPrice(4);
     }
 
-    public static double sendadblue() {
+    public static double sendAdblue() {
         return pricesDBhelper.readFuelPrice(5);
     }
 
@@ -97,14 +97,14 @@ public class Model {
 
     public static void writePrices(List<String> strprices)
     {
-        double ai92, ai95, dt, dtarctic, gas, adblue;
+        double ai92, ai95, dt, dtArctic, gas, adblue;
         BigDecimal bd;
         bd =new BigDecimal(Float.valueOf(strprices.get(7)));
         bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
         dt = bd.doubleValue();
         bd =new BigDecimal(Float.valueOf(strprices.get(8)));
         bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
-        dtarctic = bd.doubleValue();
+        dtArctic = bd.doubleValue();
         bd =new BigDecimal(Float.valueOf(strprices.get(9)));
         bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
         ai92 = bd.doubleValue();
@@ -117,33 +117,33 @@ public class Model {
         bd =new BigDecimal(Float.valueOf(strprices.get(12)));
         bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
         adblue = bd.doubleValue();
-        pricesDBhelper.writePricesInBase(ai92, ai95, dt, dtarctic, gas, adblue);
+        pricesDBhelper.writePricesInBase(ai92, ai95, dt, dtArctic, gas, adblue);
 
     }
 
     public static double sendMoney(int period) {
         double cons;
-        Date targetdate = new Date();
+        Date targetDate = new Date();
 
 
         if (period == 0) {
-            targetdate.setDate(targetdate.getDate()-7);
+            targetDate.setDate(targetDate.getDate()-7);
         }
 
         else if (period == 1)
         {
-            targetdate.setMonth(targetdate.getMonth()-1);
+            targetDate.setMonth(targetDate.getMonth()-1);
         }
 
         else
         {
-            targetdate.setYear(targetdate.getYear()-1);
+            targetDate.setYear(targetDate.getYear()-1);
         };
         String month;
         String day;
-        if (targetdate.getMonth()<10) month = "0"+String.valueOf(targetdate.getMonth()); else month = String.valueOf(targetdate.getMonth());
-        if (targetdate.getDate()<10) day = "0"+String.valueOf(targetdate.getDate()); else day = String.valueOf(targetdate.getDate());
-        String targetdatecomparible = String.valueOf(targetdate.getYear())+month+day;
+        if (targetDate.getMonth()<10) month = "0"+String.valueOf(targetDate.getMonth()); else month = String.valueOf(targetDate.getMonth());
+        if (targetDate.getDate()<10) day = "0"+String.valueOf(targetDate.getDate()); else day = String.valueOf(targetDate.getDate());
+        String targetdatecomparible = String.valueOf(targetDate.getYear())+month+day;
         cons=refuelsDBhelper.readMoney(targetdatecomparible);
 
         BigDecimal bd = new BigDecimal(cons);
@@ -153,28 +153,28 @@ public class Model {
 
     public static double sendFuel(int period) {
         double cons;
-        Date targetdate = new Date();
+        Date targetDate = new Date();
 
 
         if (period == 0) {
-           targetdate.setDate(targetdate.getDate()-7);
+           targetDate.setDate(targetDate.getDate()-7);
         }
 
         else if (period == 1)
         {
-            targetdate.setMonth(targetdate.getMonth()-1);
+            targetDate.setMonth(targetDate.getMonth()-1);
         }
 
         else
         {
-            targetdate.setYear(targetdate.getYear()-1);
+            targetDate.setYear(targetDate.getYear()-1);
         };
         String month;
         String day;
-        if (targetdate.getMonth()<10) month = "0"+String.valueOf(targetdate.getMonth()); else month = String.valueOf(targetdate.getMonth());
-        if (targetdate.getDate()<10) day = "0"+String.valueOf(targetdate.getDate()); else day = String.valueOf(targetdate.getDate());
-        String targetdatecomparible = String.valueOf(targetdate.getYear())+month+day;
-        cons=refuelsDBhelper.readFuel(targetdatecomparible);
+        if (targetDate.getMonth()<10) month = "0"+String.valueOf(targetDate.getMonth()); else month = String.valueOf(targetDate.getMonth());
+        if (targetDate.getDate()<10) day = "0"+String.valueOf(targetDate.getDate()); else day = String.valueOf(targetDate.getDate());
+        String targetDateComparible = String.valueOf(targetDate.getYear())+month+day;
+        cons=refuelsDBhelper.readFuel(targetDateComparible);
 
         BigDecimal bd = new BigDecimal(cons);
         bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
@@ -198,8 +198,8 @@ public class Model {
         String day;
         if (date.getMonth()<10) month = "0"+String.valueOf(date.getMonth()); else month = String.valueOf(date.getMonth());
         if (date.getDate()<10) day = "0"+String.valueOf(date.getDate()); else day = String.valueOf(date.getDate());
-        String datecomparible = String.valueOf(date.getYear())+month+day;
-        refuelsDBhelper.insertData(datecomparible, fuellevel, litres, cost, odometr);
+        String dateComparible = String.valueOf(date.getYear())+month+day;
+        refuelsDBhelper.insertData(dateComparible, fuellevel, litres, cost, odometr);
 
     }
 

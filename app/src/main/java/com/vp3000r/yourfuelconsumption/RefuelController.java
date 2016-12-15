@@ -8,12 +8,12 @@ import android.content.Context;
 public class RefuelController extends Controller {
 
 
-    RefuelController (double litres, double cost, double fuellevel, double odometr, int fuelkind, Context context)
+    RefuelController (double litres, double cost, double fuelLevel, double odometr, int fuelKind, Context context)
     {
         GetFuel gf = new GetFuelAdapter(context);
-        double fuelprice = gf.getFuel(fuelkind, context);
+        double fuelPrice = gf.getFuel(fuelKind, context);
         Model model = new Model (context, 0);
-        model.addRefuel(litres, cost, fuellevel, odometr, fuelprice);
+        model.addRefuel(litres, cost, fuelLevel, odometr, fuelPrice);
 
     }
 

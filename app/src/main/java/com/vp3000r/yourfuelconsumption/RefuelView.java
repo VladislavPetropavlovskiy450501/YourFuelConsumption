@@ -33,12 +33,12 @@ public class RefuelView extends AppCompatActivity implements View {
         setContentView(R.layout.activity_refuel_view);
 
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        // Создаем адаптер ArrayAdapter с помощью массива строк и стандартной разметки элемета spinner
+
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.fuels, android.R.layout.simple_spinner_item);
-        // Определяем разметку для использования при выборе элемента
+
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Применяем адаптер к элементу spinner
+
         spinner.setAdapter(adapter);
         Button btnRefuel = (Button) findViewById(R.id.button);
 
@@ -84,7 +84,7 @@ public class RefuelView extends AppCompatActivity implements View {
                 }
 
                 Spinner spinner = (Spinner) findViewById(R.id.spinner);
-                int fuelkind = spinner.getSelectedItemPosition();
+                int fuelKind = spinner.getSelectedItemPosition();
 
                 if (litresflag==true && costflag == true)
                 {
@@ -95,7 +95,7 @@ public class RefuelView extends AppCompatActivity implements View {
                     ((TextView) findViewById(R.id.textView9)).setText("");
                     if (inpflag==true && (litresflag==true || costflag == true))
                     {
-                        RefuelController refuel = new RefuelController(litres, cost, fuellevel, odometr, fuelkind, c);
+                        RefuelController refuel = new RefuelController(litres, cost, fuellevel, odometr, fuelKind, c);
                         btRefuelRight(v);
 
                     }

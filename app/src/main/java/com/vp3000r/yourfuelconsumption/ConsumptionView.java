@@ -53,17 +53,17 @@ public class ConsumptionView extends AppCompatActivity implements View {
     public void showConsumption(int period) {
         ConsumtionController consumption = new ConsumtionController(this);
         if (period==0){
-            ((TextView) findViewById(R.id.textViewFuelC)).setText("" + consumption.fuelweek + "л/100км");
-            ((TextView) findViewById(R.id.textViewMoneyC)).setText("" + consumption.moneyweek);
+            ((TextView) findViewById(R.id.textViewFuelC)).setText("" + consumption.fuelWeek + "л/100км");
+            ((TextView) findViewById(R.id.textViewMoneyC)).setText("" + consumption.moneyWeek);
 
         }
         else if (period==1){
-            ((TextView) findViewById(R.id.textViewFuelC)).setText("" + consumption.fuelmonth + "л/100км");
-            ((TextView) findViewById(R.id.textViewMoneyC)).setText("" + consumption.moneymonth);
+            ((TextView) findViewById(R.id.textViewFuelC)).setText("" + consumption.fuelMonth + "л/100км");
+            ((TextView) findViewById(R.id.textViewMoneyC)).setText("" + consumption.moneyMonth);
         }
         else {
-            ((TextView) findViewById(R.id.textViewFuelC)).setText("" + consumption.fuelyear + "л/100км");
-            ((TextView) findViewById(R.id.textViewMoneyC)).setText("" + consumption.moneyyear);
+            ((TextView) findViewById(R.id.textViewFuelC)).setText("" + consumption.fuelYear + "л/100км");
+            ((TextView) findViewById(R.id.textViewMoneyC)).setText("" + consumption.moneyYear);
         }
 
         ((TextView) findViewById(R.id.textViewTarget)).setText("" + consumption.target + "л/100км");

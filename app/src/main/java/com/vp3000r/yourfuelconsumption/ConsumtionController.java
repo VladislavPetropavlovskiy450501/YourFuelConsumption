@@ -3,7 +3,7 @@ package com.vp3000r.yourfuelconsumption;
 import android.content.Context;
 
 /**
- * Обработка действий, происходящих в окне расходов. Запрос данных о расходах из модели.
+ * Created by P on 21.11.16.
  */
 public class ConsumtionController extends Controller {
     double moneyWeek, moneyMonth, moneyYear, fuelWeek, fuelMonth, fuelYear, target;
@@ -13,9 +13,9 @@ public class ConsumtionController extends Controller {
     moneyWeek = Model.sendMoney(0);
     moneyMonth = Model.sendMoney(1);
     moneyYear = Model.sendMoney(2);
-    fuelWeek = model.sendFuelConsumption(0);
-    fuelMonth = model.sendFuelConsumption(1);
-    fuelYear = model.sendFuelConsumption(2);
+    fuelWeek = model.sendFuel(0);
+    fuelMonth = model.sendFuel(1);
+    fuelYear = model.sendFuel(2);
     StrategyContext context = new StrategyContext();
 
     if (fuelWeek>7) {

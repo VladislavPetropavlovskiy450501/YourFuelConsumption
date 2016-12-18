@@ -22,9 +22,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * Класс, отправляющий и принимающий данные из базы данных
- */
+
 public class Model {
     static Context context;
     static PricesDbHelper pricesDBhelper;
@@ -62,56 +60,67 @@ public class Model {
     SimpleCursorAdapter userAdapter;
 
 
-    /**
-     * Метод, запрашивающий цену на топливо из базы
-     * @param fuelKind - тип топлива
-     */
-    public static double sendPrice(int fuelKind) {
-        return pricesDBhelper.readFuelPrice(fuelKind);
+
+
+    public static double send92() {
+
+
+        return pricesDBhelper.readFuelPrice(2);
+
+
     }
 
+    public static double send95() {
+        return pricesDBhelper.readFuelPrice(3);
+    }
 
+    public static double sendDT() {
+        return pricesDBhelper.readFuelPrice(0);
+    }
+
+    public static double sendDTarctic() {
+        return pricesDBhelper.readFuelPrice(1);
+    }
+
+    public static double sendGas() {
+        return pricesDBhelper.readFuelPrice(4);
+    }
+
+    public static double sendAdblue() {
+        return pricesDBhelper.readFuelPrice(5);
+    }
 
     public static void refreshPrices() {
         new ParseSite().execute("http://sgonay.ucoz.com/index/0-109");
 
     }
 
-    /**
-     * Метод, записывающий цены в базу
-     * @param strPrices - список строк, находящихся в нужных тегах
-     * Метод из них выбирает только нужные по счету - те, в которых находятся цены
-     */
-    public static void writePrices(List<String> strPrices)
+    public static void writePrices(List<String> strprices)
     {
         double ai92, ai95, dt, dtArctic, gas, adblue;
         BigDecimal bd;
-        bd =new BigDecimal(Float.valueOf(strPrices.get(7)));
+        bd =new BigDecimal(Float.valueOf(strprices.get(7)));
         bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
         dt = bd.doubleValue();
-        bd =new BigDecimal(Float.valueOf(strPrices.get(8)));
+        bd =new BigDecimal(Float.valueOf(strprices.get(8)));
         bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
         dtArctic = bd.doubleValue();
-        bd =new BigDecimal(Float.valueOf(strPrices.get(9)));
+        bd =new BigDecimal(Float.valueOf(strprices.get(9)));
         bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
         ai92 = bd.doubleValue();
-        bd =new BigDecimal(Float.valueOf(strPrices.get(10)));
+        bd =new BigDecimal(Float.valueOf(strprices.get(10)));
         bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
         ai95 = bd.doubleValue();
-        bd =new BigDecimal(Float.valueOf(strPrices.get(11)));
+        bd =new BigDecimal(Float.valueOf(strprices.get(11)));
         bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
         gas = bd.doubleValue();
-        bd =new BigDecimal(Float.valueOf(strPrices.get(12)));
+        bd =new BigDecimal(Float.valueOf(strprices.get(12)));
         bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
         adblue = bd.doubleValue();
         pricesDBhelper.writePricesInBase(ai92, ai95, dt, dtArctic, gas, adblue);
 
     }
 
-    /**
-     * Метод, читающий расход денег за указанный
-     * @param period времени
-     */
     public static double sendMoney(int period) {
         double cons;
         Date targetDate = new Date();
@@ -142,12 +151,7 @@ public class Model {
         return bd.doubleValue();
     }
 
-    /**
-     * Метод, читающий из базы расход топлива за указанный
-     * @param period времени
-     */
-
-    public static double sendFuelConsumption(int period) {
+    public static double sendFuel(int period) {
         double cons;
         Date targetDate = new Date();
 
@@ -176,15 +180,6 @@ public class Model {
         bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
         return bd.doubleValue();
     }
-
-    /**
-     * Метод, записывающий в базу данные о заправке
-     * @param litres - количество заправленных литров
-     * @param cost - стоимость заправки
-     * @param fuellevel - уровень топлива перед заправкой
-     * @param odometr - показания одометра
-     * @param fuelprice - цена топлива
-     */
 
     public static void addRefuel(double litres, double cost, double fuellevel, double odometr, double fuelprice) {
         Date date = new Date();

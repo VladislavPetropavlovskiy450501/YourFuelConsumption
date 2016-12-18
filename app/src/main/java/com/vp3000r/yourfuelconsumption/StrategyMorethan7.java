@@ -3,12 +3,12 @@ package com.vp3000r.yourfuelconsumption;
 
 import java.math.BigDecimal;
 
+/**
+ * Created by P on 01.12.16.
+ */
 
 class StrategyMorethan7 implements Strategy  {
-    /**
-     * Метод рассчитывает задачу по расходу топлива на следующую неделю, если
-     * @param fuelCons (расход топлива за неделю на данный момент) меньше 7л/100км
-     */
+
     public double execute (double fuelCons)
     {
         double target = fuelCons-0.1;

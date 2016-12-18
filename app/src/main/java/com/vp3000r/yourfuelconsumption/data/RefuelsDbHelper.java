@@ -10,6 +10,9 @@ import android.util.Log;
 
 import java.sql.Date;
 
+/**
+ * Класс для работы с базой заправок
+ */
 public class RefuelsDbHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "refuels.db"; // название бд
@@ -42,6 +45,9 @@ public class RefuelsDbHelper extends SQLiteOpenHelper {
 
     }
 
+    /**
+     * Занесение @param date, @param fuelbefore, @param fueladded, @param cost заправки, показаний @param odometr во время заправки в базу
+     */
     public void insertData(String date, double fuelbefore, double fueladded, double cost, double odometr){
         SQLiteDatabase db = this.getWritableDatabase();
         SQLiteStatement stmt = db.compileStatement("INSERT INTO "+TABLE+" ("+COLUMN_DATE+", "+COLUMN_FUELLVLBEFORE+", "+COLUMN_FUELADDED+", "+COLUMN_COST+", "+COLUMN_ODO+") " +
@@ -57,54 +63,50 @@ public class RefuelsDbHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-
+    /**
+     * Чтение всех заправок после @param date и подсчет  @return fuelConsumtion за этот период
+     */
     public double readFuel (String date)
     {
-        double fuelcons=0;
+        double fuelCons=0;
 
-        double fueladded=0;
-        double startfuel, endfuel=0, startodo=0, endodo=0;
+        double fuelAdded=0;
+        double startFuel, endFuel=0, startOdo=0, endOdo=0;
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT "+COLUMN_DATE+", "+COLUMN_FUELLVLBEFORE+", "+COLUMN_FUELADDED+", "+COLUMN_COST+", "+COLUMN_ODO+" FROM "+TABLE+" WHERE "+COLUMN_DATE+" > ?";
         Cursor cursor = db.rawQuery(query, new String[] {date});
         cursor.moveToFirst();
-        startfuel=cursor.getDouble(1);
-        startodo=cursor.getDouble(4);
-        fueladded+=cursor.getDouble(2);
+        startFuel=cursor.getDouble(1);
+        startOdo=cursor.getDouble(4);
+        fuelAdded+=cursor.getDouble(2);
         while (cursor.moveToNext())
         {
-            fueladded+=cursor.getDouble(2);
-            endodo=cursor.getDouble(4);
-            endfuel=cursor.getDouble(1);
+            fuelAdded+=cursor.getDouble(2);
+            endOdo=cursor.getDouble(4);
+            endFuel=cursor.getDouble(1);
         }
         cursor.moveToLast();
-        fueladded-=cursor.getDouble(2);
-        fuelcons=100*(fueladded+startfuel-endfuel)/(endodo-startodo);
-        return fuelcons;
+        fuelAdded-=cursor.getDouble(2);
+        fuelCons=100*(fuelAdded+startFuel-endFuel)/(endOdo-startOdo);
+        return fuelCons;
     }
-
+    /**
+     * Чтение всех заправок после @param date и подсчет  @return moneySpended за этот период
+     */
     public double readMoney (String date)
     {
-
-
-        double moneyspended=0;
-
+        double moneySpended=0;
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT "+COLUMN_DATE+", "+COLUMN_FUELLVLBEFORE+", "+COLUMN_FUELADDED+", "+COLUMN_COST+", "+COLUMN_ODO+" FROM "+TABLE+" WHERE "+COLUMN_DATE+" > ?";
         Cursor cursor = db.rawQuery(query, new String[] {date});
         cursor.moveToFirst();
-        moneyspended+=cursor.getDouble(3);
+        moneySpended+=cursor.getDouble(3);
 
         while (cursor.moveToNext())
         {
-            moneyspended+=cursor.getDouble(3);
-
+            moneySpended+=cursor.getDouble(3);
         }
-
-        return moneyspended;
+        return moneySpended;
     }
-
-
-
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {}
 }

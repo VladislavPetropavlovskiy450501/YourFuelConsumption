@@ -9,6 +9,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * Отображение окна расходов
+ */
+
 public class ConsumptionView extends AppCompatActivity implements View {
 
 
@@ -49,6 +53,10 @@ public class ConsumptionView extends AppCompatActivity implements View {
 
     }
 
+    /**
+     * Метод отображения расходов
+     * @param period это период, за который отображается расход
+     */
 
     public void showConsumption(int period) {
         ConsumtionController consumption = new ConsumtionController(this);

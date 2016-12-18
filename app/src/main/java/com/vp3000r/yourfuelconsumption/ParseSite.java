@@ -12,7 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Created by P on 05.12.16.
+ * Запуск и окончание парсинга
  */
 public class ParseSite extends AsyncTask<String, Void, List<String>> {
     //Фоновая операция

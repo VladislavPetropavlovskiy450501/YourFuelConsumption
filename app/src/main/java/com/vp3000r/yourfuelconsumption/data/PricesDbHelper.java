@@ -9,6 +9,10 @@ import android.util.Log;
 
 import com.vp3000r.yourfuelconsumption.PricesView;
 
+/**
+ * Класс для работы с базой цен
+ */
+
 public class PricesDbHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "prices.db"; // название бд
@@ -34,6 +38,9 @@ public class PricesDbHelper extends SQLiteOpenHelper {
 
     }
 
+    /**
+     * Ввод дефолтных данных
+     */
     public void insertData(){
         SQLiteDatabase db = this.getWritableDatabase();
         SQLiteStatement stmt = db.compileStatement("INSERT INTO "+TABLE+" ("+COLUMN_FUELID+", "+COLUMN_PRICE+") " +
@@ -59,7 +66,11 @@ public class PricesDbHelper extends SQLiteOpenHelper {
         stmt.close();
         db.close();
     }
-    public void writePricesInBase (double ai92, double ai95, double dt, double dtarctic, double gas, double adblue)
+
+    /**
+     * Сохранение в базе цен на @param ai92, @param ai95, @param dt, @param dtArctic, @param gas, @param adblue
+     */
+    public void writePricesInBase (double ai92, double ai95, double dt, double dtArctic, double gas, double adblue)
     {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -79,7 +90,7 @@ public class PricesDbHelper extends SQLiteOpenHelper {
         stmt.execute();
 
         stmt.bindLong(1, 1);
-        stmt.bindDouble(2, dtarctic);
+        stmt.bindDouble(2, dtArctic);
         stmt.execute();
 
         stmt.bindLong(1, 2);
@@ -103,6 +114,10 @@ public class PricesDbHelper extends SQLiteOpenHelper {
 
 
     }
+
+    /**
+     * Чтение цена на топливо типа @param kind
+     */
     public double readFuelPrice(int kind){
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT "+COLUMN_ID+", "+COLUMN_FUELID+", "+COLUMN_PRICE+" FROM "+TABLE+" WHERE "+COLUMN_FUELID+" = ?";

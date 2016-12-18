@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * Класс, отвечающий за отображение окна цен на топлива
+ */
 public class PricesView extends AppCompatActivity implements View {
 
 
@@ -44,6 +47,11 @@ public class PricesView extends AppCompatActivity implements View {
         setContentView(R.layout.activity_prices_view);
         showPrices();
     }
+
+    /**
+     * Метод, проверяющий соединение с интернетом
+     * @return true, если соединение есть (тогда нажатие клавиши передается обработчику), false - если подключение отсутствует (тогда появляется сообщение об ошибке)
+     */
     public static boolean hasConnection(final Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo wifiInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);

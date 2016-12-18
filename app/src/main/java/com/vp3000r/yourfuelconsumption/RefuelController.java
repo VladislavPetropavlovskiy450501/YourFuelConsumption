@@ -3,7 +3,7 @@ package com.vp3000r.yourfuelconsumption;
 import android.content.Context;
 
 /**
- * Created by P on 21.11.16.
+ * Класс, обрабатывающий заправку. Принимает введенные данные из класса, отвечающего за отображение окна и передает их в модель
  */
 public class RefuelController extends Controller {
 

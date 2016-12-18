@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by P on 05.12.16.
+ * Класс, осуществляющий парсинг страницы и фильтрующий результат
  */
 public class HtmlHelper {
     TagNode rootNode;

@@ -10,6 +10,10 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+/**
+ * Класс, отвечающий за отображение и ввод данных в окне заправки
+ */
+
 public class RefuelView extends AppCompatActivity implements View {
 
     float litres, cost, fuellevel, odometr;

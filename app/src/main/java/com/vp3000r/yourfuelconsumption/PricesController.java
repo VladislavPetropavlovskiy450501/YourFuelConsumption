@@ -34,7 +34,7 @@ public class PricesController extends Controller {
     public double sendPrice(int fuelKind, Context context){
     double price=0;
         Model model = new Model(context);
-        price = Model.sendFuelConsumption(fuelKind);
+        price = Model.sendPrice(fuelKind);
     return price;
 
     }

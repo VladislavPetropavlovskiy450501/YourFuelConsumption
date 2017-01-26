@@ -5,9 +5,9 @@ import android.content.Context;
 /**
  * Обработка действий, происходящих в окне расходов. Запрос данных о расходах из модели.
  */
-public class ConsumtionController extends Controller {
+public class ConsumptionController extends Controller {
     double moneyWeek, moneyMonth, moneyYear, fuelWeek, fuelMonth, fuelYear, target;
-    ConsumtionController(Context c)
+    ConsumptionController(Context c)
 {
     Model model = new Model(c, 0);
     moneyWeek = Model.sendMoney(0);
